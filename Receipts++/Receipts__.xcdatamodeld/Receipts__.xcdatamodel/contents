@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Receipt" representedClassName="Receipt" syncable="YES" codeGenerationType="class"/>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="Tag" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Receipt" positionX="-54" positionY="-9" width="128" height="45"/>
+    </elements>
 </model>
