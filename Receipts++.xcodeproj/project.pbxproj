@@ -15,6 +15,10 @@
 		01CA7D3D1FA25E51007ADE69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01CA7D3B1FA25E51007ADE69 /* LaunchScreen.storyboard */; };
 		01CA7D401FA25E51007ADE69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D3F1FA25E51007ADE69 /* main.m */; };
 		01CA7D701FA2691D007ADE69 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D6F1FA2691D007ADE69 /* AddItemViewController.m */; };
+		01CA7D791FA2DE13007ADE69 /* Tag+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D721FA2DE13007ADE69 /* Tag+CoreDataClass.m */; };
+		01CA7D7A1FA2DE13007ADE69 /* Tag+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D741FA2DE13007ADE69 /* Tag+CoreDataProperties.m */; };
+		01CA7D7B1FA2DE13007ADE69 /* Receipt+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D761FA2DE13007ADE69 /* Receipt+CoreDataClass.m */; };
+		01CA7D7C1FA2DE13007ADE69 /* Receipt+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D781FA2DE13007ADE69 /* Receipt+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,14 @@
 		01CA7D3F1FA25E51007ADE69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01CA7D6E1FA2691D007ADE69 /* AddItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
 		01CA7D6F1FA2691D007ADE69 /* AddItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
+		01CA7D711FA2DE13007ADE69 /* Tag+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tag+CoreDataClass.h"; sourceTree = "<group>"; };
+		01CA7D721FA2DE13007ADE69 /* Tag+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Tag+CoreDataClass.m"; sourceTree = "<group>"; };
+		01CA7D731FA2DE13007ADE69 /* Tag+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tag+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01CA7D741FA2DE13007ADE69 /* Tag+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Tag+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01CA7D751FA2DE13007ADE69 /* Receipt+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Receipt+CoreDataClass.h"; sourceTree = "<group>"; };
+		01CA7D761FA2DE13007ADE69 /* Receipt+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataClass.m"; sourceTree = "<group>"; };
+		01CA7D771FA2DE13007ADE69 /* Receipt+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Receipt+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01CA7D781FA2DE13007ADE69 /* Receipt+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,14 @@
 		01CA7D211FA25E50007ADE69 = {
 			isa = PBXGroup;
 			children = (
+				01CA7D711FA2DE13007ADE69 /* Tag+CoreDataClass.h */,
+				01CA7D721FA2DE13007ADE69 /* Tag+CoreDataClass.m */,
+				01CA7D731FA2DE13007ADE69 /* Tag+CoreDataProperties.h */,
+				01CA7D741FA2DE13007ADE69 /* Tag+CoreDataProperties.m */,
+				01CA7D751FA2DE13007ADE69 /* Receipt+CoreDataClass.h */,
+				01CA7D761FA2DE13007ADE69 /* Receipt+CoreDataClass.m */,
+				01CA7D771FA2DE13007ADE69 /* Receipt+CoreDataProperties.h */,
+				01CA7D781FA2DE13007ADE69 /* Receipt+CoreDataProperties.m */,
 				01CA7D2C1FA25E50007ADE69 /* Receipts++ */,
 				01CA7D2B1FA25E50007ADE69 /* Products */,
 			);
@@ -150,9 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01CA7D791FA2DE13007ADE69 /* Tag+CoreDataClass.m in Sources */,
 				01CA7D321FA25E50007ADE69 /* ViewController.m in Sources */,
+				01CA7D7B1FA2DE13007ADE69 /* Receipt+CoreDataClass.m in Sources */,
+				01CA7D7C1FA2DE13007ADE69 /* Receipt+CoreDataProperties.m in Sources */,
 				01CA7D2F1FA25E50007ADE69 /* AppDelegate.m in Sources */,
 				01CA7D401FA25E51007ADE69 /* main.m in Sources */,
+				01CA7D7A1FA2DE13007ADE69 /* Tag+CoreDataProperties.m in Sources */,
 				01CA7D701FA2691D007ADE69 /* AddItemViewController.m in Sources */,
 				01CA7D381FA25E50007ADE69 /* Receipts__.xcdatamodeld in Sources */,
 			);

@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "Receipts__+CoreDataModel.h"
+//#import "Receipts__+CoreDataModel.h"
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-//@property (strong, nonatomic) NSFetchedResultsController<Receipt *> *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

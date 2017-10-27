@@ -7,6 +7,9 @@
 //
 
 #import "AddItemViewController.h"
+#import "Tag+CoreDataClass.h"
+#import "Receipt+CoreDataClass.h"
+
 
 @interface AddItemViewController ()
 
@@ -24,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tagTableView.allowsMultipleSelection = true;
-
+    [self.descriptionTextView setReturnKeyType:UIReturnKeyDone];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -62,25 +65,13 @@
         abort();
     }
     [self cancelPressed:self];
-    
-    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)endEditingPressed:(id)sender {
     [self.view endEditing:true];
 }
@@ -89,6 +80,15 @@
     [self.view endEditing:true];
     return true;
 }
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [self.view endEditing:true];
+    }
+    return true;
+}
+
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tagTableView dequeueReusableCellWithIdentifier:@"tagCell" forIndexPath:indexPath];
