@@ -40,12 +40,32 @@
 }
 
 - (IBAction)cancelPressed:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (IBAction)addReceiptPressed:(id)sender {
+    Receipt *myReceipt = [[Receipt alloc] initWithContext:self.managedObjectContext];
+    myReceipt.amount = [NSDecimalNumber decimalNumberWithString:self.amountField.text];
+    myReceipt.note = self.descriptionTextView.text;
+    myReceipt.timestamp = self.datePicker.date;
+    NSArray<NSIndexPath *> *selectedTags =  self.tagTableView.indexPathsForSelectedRows;
+    NSMutableSet *tagSet = [[NSMutableSet alloc] init];
+    for (NSIndexPath *thisOne in selectedTags) {
+        [tagSet addObject:[self.tagsArr objectAtIndex:thisOne.row]];
+    }
+    myReceipt.hasTag = tagSet;
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        abort();
+    }
+    [self cancelPressed:self];
+    
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -61,6 +81,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)endEditingPressed:(id)sender {
+    [self.view endEditing:true];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:true];
+    return true;
+}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tagTableView dequeueReusableCellWithIdentifier:@"tagCell" forIndexPath:indexPath];
@@ -70,7 +98,7 @@
     return cell;
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section { 
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tagsArr.count;
 }
 
@@ -96,10 +124,9 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
-//-(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.accessory
-//}
+
+
+
 
 
 

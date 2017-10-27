@@ -94,6 +94,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr0-AD-GdN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <action selector="endEditingPressed:" destination="U88-Cr-FXg" eventType="touchUpInside" id="V45-cs-zF4"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evg-h0-UhM">
                                 <rect key="frame" x="10" y="119" width="202.5" height="30"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -156,15 +162,6 @@
                                     <!--2017-10-26 19:17:48 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Lz-eo-XED">
-                                <rect key="frame" x="64.5" y="543.5" width="96" height="42"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                <state key="normal" title="  Cancel  "/>
-                                <connections>
-                                    <action selector="cancelPressed:" destination="U88-Cr-FXg" eventType="touchUpInside" id="Z3m-k5-45E"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-jC-V4k">
                                 <rect key="frame" x="187" y="543.5" width="151" height="42"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
@@ -174,17 +171,30 @@
                                     <action selector="addReceiptPressed:" destination="U88-Cr-FXg" eventType="touchUpInside" id="abE-Qd-2mQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Lz-eo-XED">
+                                <rect key="frame" x="64.5" y="543.5" width="96" height="42"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <state key="normal" title="  Cancel  "/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="U88-Cr-FXg" eventType="touchUpInside" id="Z3m-k5-45E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="54b-wT-crO" firstAttribute="trailing" secondItem="nAV-vw-ue1" secondAttribute="trailing" id="1VH-aG-TWq"/>
                             <constraint firstItem="szb-fI-vf0" firstAttribute="centerX" secondItem="54b-wT-crO" secondAttribute="centerX" id="3Fc-cj-k3g"/>
+                            <constraint firstItem="54b-wT-crO" firstAttribute="bottom" secondItem="hr0-AD-GdN" secondAttribute="bottom" id="4Gi-oa-lyv"/>
                             <constraint firstItem="1Lz-eo-XED" firstAttribute="centerX" secondItem="szb-fI-vf0" secondAttribute="centerX" multiplier="0.6" id="7ME-5s-QSk"/>
                             <constraint firstItem="54b-wT-crO" firstAttribute="trailing" secondItem="Izp-aC-d9J" secondAttribute="trailing" constant="10" id="7b0-Ro-FPb"/>
                             <constraint firstItem="Izp-aC-d9J" firstAttribute="leading" secondItem="evg-h0-UhM" secondAttribute="trailing" constant="10" id="7yJ-Qy-D1m"/>
+                            <constraint firstItem="hr0-AD-GdN" firstAttribute="leading" secondItem="54b-wT-crO" secondAttribute="leading" id="EXX-8R-rdL"/>
                             <constraint firstItem="1Lz-eo-XED" firstAttribute="top" secondItem="szb-fI-vf0" secondAttribute="bottom" constant="20" id="JZ8-gv-jx2"/>
                             <constraint firstItem="nAV-vw-ue1" firstAttribute="leading" secondItem="54b-wT-crO" secondAttribute="leading" id="KSh-8j-pu9"/>
                             <constraint firstItem="evg-h0-UhM" firstAttribute="leading" secondItem="54b-wT-crO" secondAttribute="leading" constant="10" id="NuR-AD-MJZ"/>
+                            <constraint firstItem="hr0-AD-GdN" firstAttribute="top" secondItem="54b-wT-crO" secondAttribute="top" id="OWg-JS-6Ot"/>
+                            <constraint firstItem="54b-wT-crO" firstAttribute="trailing" secondItem="hr0-AD-GdN" secondAttribute="trailing" id="SCD-y0-FsA"/>
                             <constraint firstItem="CLN-BO-5GC" firstAttribute="leading" secondItem="54b-wT-crO" secondAttribute="leading" constant="10" id="U8G-XQ-MdU"/>
                             <constraint firstItem="nAV-vw-ue1" firstAttribute="top" secondItem="54b-wT-crO" secondAttribute="top" id="Wmv-dh-CGQ"/>
                             <constraint firstItem="szb-fI-vf0" firstAttribute="centerY" secondItem="54b-wT-crO" secondAttribute="centerY" constant="50" id="XZ8-Te-ETG"/>

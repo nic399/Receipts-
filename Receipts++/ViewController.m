@@ -11,6 +11,9 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic, readwrite) NSArray<Receipt *> *receiptsArr;
+@property (strong, nonatomic, readwrite) NSArray<Tag *> *tagsArr;
+@property (strong, nonatomic, readwrite) NSMutableArray<NSMutableArray *> *dataSourceArr;
 
 @end
 
@@ -19,13 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    self.dataSourceArr = [NSMutableArray new];
     // Check if any Tag objects exist
-    NSFetchRequest *test = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+    self.navigationItem.title = @"My Receipts";
+    NSFetchRequest *requestTags = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
     NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:test error:&error];
+    NSArray *results = [self.managedObjectContext executeFetchRequest:requestTags error:&error];
     if (!results) {
-        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
     NSLog(@"num items in results: %ld", results.count);
@@ -44,11 +48,113 @@
             NSLog(@"Unresolved error %@, %@", error, error.userInfo);
             abort();
         }
+        results = [self.managedObjectContext executeFetchRequest:requestTags error:&error];
+        if (!results) {
+            NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
+            abort();
+        }
+        NSLog(@"num items in results: %ld", results.count);
+    }
+    
+    NSFetchRequest *requestReceipts = [NSFetchRequest fetchRequestWithEntityName:@"Receipt"];
+    NSArray *receiptsArr = [self.managedObjectContext executeFetchRequest:requestReceipts error:&error];
+    if (!receiptsArr) {
+        NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    NSLog(@"num items in receiptsArr: %ld", receiptsArr.count);
+    if (receiptsArr.count == 0) {
+        Receipt *r1 = [[Receipt alloc] initWithContext:self.managedObjectContext];
+        r1.amount = [[NSDecimalNumber alloc] initWithString:@"12.34"];
+        r1.note = @"Receipt 1 note";
+        r1.timestamp = [NSDate date];
+        NSMutableSet<Tag *> *r1set = [[NSMutableSet alloc] initWithObjects:results[0], results[1], results[2], nil];
+        r1.hasTag = r1set;
+        
+        Receipt *r2 = [[Receipt alloc] initWithContext:self.managedObjectContext];
+        r2.amount = [[NSDecimalNumber alloc] initWithString:@"23.45"];
+        r2.note = @"Receipt 2 note";
+        r2.timestamp = [NSDate dateWithTimeIntervalSinceNow:24*60*60*4];
+        NSMutableSet<Tag *> *r2set = [[NSMutableSet alloc] initWithObjects:results[0], nil];
+        r2.hasTag = r2set;
+
+        Receipt *r3 = [[Receipt alloc] initWithContext:self.managedObjectContext];
+        r3.amount = [[NSDecimalNumber alloc] initWithString:@"34.56"];
+        r3.note = @"Receipt 3 note";
+        r3.timestamp = [NSDate dateWithTimeIntervalSinceNow:24*60*60*9];
+        NSMutableSet<Tag *> *r3set = [[NSMutableSet alloc] initWithObjects: results[2], nil];
+        r3.hasTag = r3set;
+        
+        if (![self.managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+            abort();
+        }
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self refreshDataArray];
+    [self.tableView reloadData];
+}
+
+-(void)refreshDataArray {
+    NSFetchRequest *requestTags = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:requestTags error:&error];
+    if (!results) {
+        NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    self.tagsArr = results;
+    
+    NSFetchRequest *requestReceipts = [NSFetchRequest fetchRequestWithEntityName:@"Receipt"];
+    NSArray *receiptResults = [self.managedObjectContext executeFetchRequest:requestReceipts error:&error];
+    if (!results) {
+        NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    self.receiptsArr = receiptResults;
+    
+    [self setUpTableSectionData];
+}
+
+-(void)setUpTableSectionData {
+    self.dataSourceArr = [NSMutableArray new];
+    for (int tagIndex = 0; tagIndex < self.tagsArr.count; tagIndex++) {
+        self.dataSourceArr[tagIndex] = [NSMutableArray new];
+        NSFetchRequest *requestReceipts = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+        NSPredicate *myPredicate = [NSPredicate predicateWithFormat:@"tagName == %@", self.tagsArr[tagIndex].tagName];
+        [requestReceipts setPredicate:myPredicate];
+        NSError *error = nil;
+        NSArray *results = [self.managedObjectContext executeFetchRequest:requestReceipts error:&error];
+        if (!results) {
+            NSLog(@"Error fetching Tag objects: %@\n%@", [error localizedDescription], [error userInfo]);
+            abort();
+        }
+        Tag *thisTag = [results firstObject];
+        for (Receipt *thisReceipt in thisTag.receiptHasTag) {
+            [self.dataSourceArr[tagIndex] addObject:thisReceipt];
+        }
+        
+        NSLog(@"Tag name: %@\nNumber of receipts for that tag: %ld",self.tagsArr[tagIndex].tagName, self.dataSourceArr[tagIndex].count);
     }
     
     
-
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -71,19 +177,18 @@
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;//[[self.fetchedResultsController sections] count];
+    return self.tagsArr.count;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return 0;//[sectionInfo numberOfObjects];
+    return self.receiptsArr.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
-    Receipt *receipt;// = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Receipt *receipt = self.receiptsArr[indexPath.row];
     [self configureCell:cell withReceipt:receipt];
     return cell;
 }
@@ -97,8 +202,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = self.managedObjectContext; // [self.fetchedResultsController managedObjectContext];
-        //[context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        NSManagedObjectContext *context = self.managedObjectContext;
         
         NSError *error = nil;
         if (![context save:&error]) {
@@ -108,6 +212,10 @@
             abort();
         }
     }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [self.tagsArr objectAtIndex:section].tagName;
 }
 
 //- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -136,7 +244,8 @@
 //}
 
 - (void)configureCell:(UITableViewCell *)cell withReceipt:(Receipt *)receipt {
-    
+    cell.textLabel.text = receipt.note;
+    cell.detailTextLabel.text = [receipt.amount stringValue];
 }
 
 //#pragma mark - Fetched results controller
