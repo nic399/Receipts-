@@ -14,6 +14,7 @@
 		01CA7D3A1FA25E51007ADE69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01CA7D391FA25E50007ADE69 /* Assets.xcassets */; };
 		01CA7D3D1FA25E51007ADE69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01CA7D3B1FA25E51007ADE69 /* LaunchScreen.storyboard */; };
 		01CA7D401FA25E51007ADE69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D3F1FA25E51007ADE69 /* main.m */; };
+		01CA7D701FA2691D007ADE69 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CA7D6F1FA2691D007ADE69 /* AddItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		01CA7D3C1FA25E51007ADE69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01CA7D3E1FA25E51007ADE69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01CA7D3F1FA25E51007ADE69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01CA7D6E1FA2691D007ADE69 /* AddItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
+		01CA7D6F1FA2691D007ADE69 /* AddItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 				01CA7D2E1FA25E50007ADE69 /* AppDelegate.m */,
 				01CA7D301FA25E50007ADE69 /* ViewController.h */,
 				01CA7D311FA25E50007ADE69 /* ViewController.m */,
+				01CA7D6E1FA2691D007ADE69 /* AddItemViewController.h */,
+				01CA7D6F1FA2691D007ADE69 /* AddItemViewController.m */,
 				01CA7D331FA25E50007ADE69 /* Main.storyboard */,
 				01CA7D391FA25E50007ADE69 /* Assets.xcassets */,
 				01CA7D3B1FA25E51007ADE69 /* LaunchScreen.storyboard */,
@@ -148,6 +153,7 @@
 				01CA7D321FA25E50007ADE69 /* ViewController.m in Sources */,
 				01CA7D2F1FA25E50007ADE69 /* AppDelegate.m in Sources */,
 				01CA7D401FA25E51007ADE69 /* main.m in Sources */,
+				01CA7D701FA2691D007ADE69 /* AddItemViewController.m in Sources */,
 				01CA7D381FA25E50007ADE69 /* Receipts__.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

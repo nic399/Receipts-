@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    NSLog(@"num controllers in root nav controller: %ld", navController.viewControllers.count);
+    ViewController *viewController = (ViewController *)navController.topViewController;
+    viewController.managedObjectContext = self.persistentContainer.viewContext;
     return YES;
 }
 

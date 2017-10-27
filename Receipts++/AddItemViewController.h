@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AddItemViewController.h
 //  Receipts++
 //
 //  Created by Nicholas Fung on 2017-10-26.
@@ -10,10 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "Receipts__+CoreDataModel.h"
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface AddItemViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
-//@property (strong, nonatomic) NSFetchedResultsController<Receipt *> *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
-
